@@ -34,5 +34,5 @@ jobs:
                   script: |
                       cd /home/ubuntu/mystery-message
                       npm install
-                      npm run build
+                      npm run dev
                       pm2 restart next-app || pm2 start npm --name "next-app" -- start
