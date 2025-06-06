@@ -22,7 +22,7 @@ export async function sendVerificationEmail(
         console.error("error sending verification email.", err);
         return {
             success: false,
-            message: "error while sending verification email.",
+            message: "error while sending verification email to the user.",
         };
     }
 }
