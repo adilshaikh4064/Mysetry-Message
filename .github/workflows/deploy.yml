@@ -33,6 +33,7 @@ jobs:
                   username: ${{ secrets.EC2_USERNAME }}
                   key: ${{ secrets.EC2_SSH_KEY }}
                   source: "./"
+                  target: "/home/ubuntu/mystery-message"
                   strip_components: 1
                   tar_tmp_path: "/tmp"
                   rm: true
