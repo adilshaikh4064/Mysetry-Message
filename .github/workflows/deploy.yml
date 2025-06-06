@@ -26,17 +26,15 @@ jobs:
                       rm -rf /home/ubuntu/mystery-message
                       mkdir -p /home/ubuntu/mystery-message
 
-            - name: Upload project to EC2
-              uses: appleboy/scp-action@master
+            - name: Upload project using rsync
+              uses: burnett01/rsync-deployments@5.1
               with:
-                  host: ${{ secrets.EC2_HOST }}
-                  username: ${{ secrets.EC2_USERNAME }}
-                  key: ${{ secrets.EC2_SSH_KEY }}
-                  source: "./"
-                  target: "/home/ubuntu/mystery-message"
-                  strip_components: 1
-                  tar_tmp_path: "/tmp"
-                  rm: true
+                  switches: -avzr --delete
+                  path: ./
+                  remote_path: /home/ubuntu/mystery-message
+                  remote_host: ${{ secrets.EC2_HOST }}
+                  remote_user: ${{ secrets.EC2_USERNAME }}
+                  remote_key: ${{ secrets.EC2_SSH_KEY }}
 
             - name: SSH into EC2 and restart app
               uses: appleboy/ssh-action@master
