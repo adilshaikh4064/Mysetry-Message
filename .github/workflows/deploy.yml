@@ -22,8 +22,9 @@ jobs:
                   host: ${{ secrets.EC2_HOST }}
                   username: ${{ secrets.EC2_USERNAME }}
                   key: ${{ secrets.EC2_SSH_KEY }}
-                  source: "."
+                  source: "./*"
                   target: "/home/ubuntu/mystery-message"
+                  overwrite: true
 
             - name: SSH into EC2 and restart app
               uses: appleboy/ssh-action@master
