@@ -30,9 +30,7 @@ export async function POST(req: NextRequest) {
         if (existingUserWithUsername) {
             if (
                 existingUserWithUsername.isVerified ||
-                existingUserWithUsername.verifyCodeExpiry.getTime() +
-                    1000 * 60 * 10 >
-                    Date.now()
+                existingUserWithUsername.verifyCodeExpiry.getTime() > Date.now()
             ) {
                 return res.json(
                     {
@@ -75,7 +73,7 @@ export async function POST(req: NextRequest) {
                 existingUserWithEmail.password = hashedPassword;
                 existingUserWithEmail.verifyCode = verifyCode;
                 existingUserWithEmail.verifyCodeExpiry = new Date(
-                    Date.now() + 1000 * 60 * 10
+                    Date.now() + 1000 * 60 * 5
                 );
                 await existingUserWithEmail.save();
             }
@@ -85,7 +83,7 @@ export async function POST(req: NextRequest) {
                 email: newUser.email,
                 password: hashedPassword,
                 verifyCode,
-                verifyCodeExpiry: new Date(Date.now() + 1000 * 60 * 10),
+                verifyCodeExpiry: new Date(Date.now() + 1000 * 60 * 5),
                 isVerified: false,
                 isAcceptingMessage: true,
                 messages: [],

@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "NEXT_DISABLE_ESLINT=1 NEXT_DISABLE_TYPECHECKING=1 next build",
+        "build": "next build",
         "start": "next start",
         "lint": "next lint"
     },
@@ -13,6 +13,7 @@
         "bcrypt": "^6.0.0",
         "mongoose": "^8.15.1",
         "next": "15.3.3",
+        "next-auth": "^4.24.11",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "resend": "^4.5.1",
